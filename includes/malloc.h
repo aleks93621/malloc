@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/09/17 14:09:56 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/09/17 16:54:49 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # include "../libft/libft/includes/libft.h"
 # include <sys/mman.h>
+
+typedef struct  s_memory
+{
+    char c;
+    struct s_memory *next;
+}               t_memory;
 
 void	free(void *ptr);
 void	*malloc(size_t size);
