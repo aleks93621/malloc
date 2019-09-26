@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/09/17 16:54:49 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/09/26 14:50:53 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct  s_memory
 {
-    char c;
+    size_t a;
     struct s_memory *next;
 }               t_memory;
 
