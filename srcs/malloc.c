@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 12:07:22 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/10/09 10:28:34 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/10/11 13:18:16 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_bloc  *create_bloc(size_t bloc_size, t_zone *zone)
         zone_size = sizeofzone_with_blocksize(bloc_size);
         zone = create_zone(zone_size);
     }
-    new_bloc = addbloc_to_zone(zone, bloc_size);
+    new_bloc = addbloc(zone, Z_ADDR(zone), bloc_size);
     return (new_bloc);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/10/09 10:34:15 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/10/11 13:19:45 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define TINY_ZONE (size_t)ZONE_CALC(TINY_SIZE)
 # define SMALL_ZONE (size_t)ZONE_CALC(SMALL_SIZE)
 # define ZONE_CALC(SIZE)(size_t)(SIZE*MIN_ALLOC/getpagesize()+1)*getpagesize()
+# define Z_ADDR(zone) (void*)(zone + 1)
 
 typedef enum		e_mtype
 {
@@ -51,6 +52,17 @@ void				*realloc(void *ptr, size_t size);
 t_mtype				typeofzone_with_blocksize(size_t block_size);
 size_t				sizeofzone_with_blocksize(size_t block_size);
 t_mtype				typeofzone_with_zonesize(size_t zone_size);
+
 t_zone				*create_zone(size_t zone_size);
+void				init_zone(t_zone *new_zone, size_t zone_size);
+void				add_zone(t_zone *new_zone);
+t_zone				*alloc_zone(size_t zone_size);
+t_zone				*get_first_zone();
+t_zone				**first_zone();
+
+t_bloc				*addbloc(t_zone *zone, void *address, size_t bloc_size);
+void				addbloc_to_zone(t_zone *zone, t_bloc *bloc);
+t_bloc				*bloc_adress(void *address);
+void				init_bloc(t_bloc bloc, size_t bloc_size);
 
 #endif
