@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/10/08 13:47:08 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/10/09 10:34:15 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ void				*realloc(void *ptr, size_t size);
 t_mtype				typeofzone_with_blocksize(size_t block_size);
 size_t				sizeofzone_with_blocksize(size_t block_size);
 t_mtype				typeofzone_with_zonesize(size_t zone_size);
+t_zone				*create_zone(size_t zone_size);
 
 #endif
