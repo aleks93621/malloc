@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_zone.c                                       :+:      :+:    :+:   */
+/*   firstzone.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 09:45:46 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/10/11 09:47:32 by aaleksov         ###   ########.fr       */
+/*   Created: 2019/10/15 09:20:06 by aaleksov          #+#    #+#             */
+/*   Updated: 2019/10/15 09:20:20 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/malloc.h"
+# include "../includes/malloc.h"
 
 t_zone	**first_zone()
 {
-	static t_zone	**first = NULL;
+	static t_zone   *first = NULL;
 
 	return (&first);
 }

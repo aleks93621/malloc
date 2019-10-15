@@ -5,36 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 12:53:58 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/10/08 13:46:20 by aaleksov         ###   ########.fr       */
+/*   Created: 2019/10/15 09:18:54 by aaleksov          #+#    #+#             */
+/*   Updated: 2019/10/15 09:25:25 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/malloc.h"
+# include "../includes/malloc.h"
 
-t_mtype	typeofzone_with_blocksize(size_t block_size)
+t_mtype typeofzone_with_blocsize(size_t bloc_size)
 {
-	if (block_size <= TINY_SIZE)
-		return (TINY);
-	else if (block_size <= SMALL_SIZE)
-		return (SMALL);
-	return (LARGE);
+	printf("Test valeur zone_size: %zu - %zu\n", bloc_size, SMALL_ZONE);
+    if (bloc_size <= TINY_SIZE)
+        return (TINY);
+    else if (bloc_size <= SMALL_SIZE)
+        return (SMALL);     
+    else
+        return (LARGE);
 }
 
-size_t	sizeofzone_with_blocksize(size_t block_size)
+size_t  sizeofzone_with_blocsize(size_t block_size)
 {
-	if (block_size <= TINY_SIZE)
-		return (TINY_ZONE);
-	else if (block_size <= SMALL_SIZE)
-		return (SMALL_ZONE);
-	return (block_size);
-}
-
-t_mtype	typeofzone_with_zonesize(size_t zone_size)
-{
-	if (zone_size <= TINY_ZONE)
-		return (TINY);
-	else if (zone_size <= SMALL_ZONE)
-		return (SMALL);
-	return (LARGE);
+    if (block_size <= TINY_SIZE)
+        return (TINY_ZONE);
+    else if (block_size <= SMALL_SIZE)
+        return (SMALL_ZONE);     
+    else
+        return (block_size);
 }
