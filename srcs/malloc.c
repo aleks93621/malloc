@@ -6,65 +6,82 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 12:07:22 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/10/15 09:27:55 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/10/17 12:20:17 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/malloc.h"
 
-void    init_zone(t_zone *new_zone, size_t block_size)
+void    test_zone()
 {
-    new_zone->type = typeofzone_with_blocsize(block_size);
-    new_zone->zone_size = sizeofzone_with_blocsize(block_size);
-    new_zone->actual_size = 0;
-    new_zone->blocs = NULL;
-    new_zone->next = NULL;
+    t_zone  *zone;
+
+    zone = get_first_zone();
+    while(zone)
+    {
+        printf("Size zone: %zu\n", zone->zone_size);
+        printf("Size actuelle: %zu\n", zone->actual_size);
+        printf("Libre: %zu\n", zone->zone_size - zone->actual_size);
+        printf("Type zone: %d\n\n", zone->type);
+        zone = zone->next;
+    }
+}
+
+t_bloc  *search_for_zone(size_t bloc_size)
+{
+    t_zone  *zone;
+    t_bloc  *bloc;
+
+    bloc = NULL;
+    zone = get_first_zone();
+    while(zone)
+    {
+        if (zone
+        && zone->type == typeofzone_with_blocsize(bloc_size)
+        && (bloc_size + SIZE_B + zone->actual_size) < zone->zone_size)
+            return (bloc = create_bloc(zone, bloc_size));
+        zone = zone->next;
+    }
+    return (bloc);
 }
 
 void    *ft_malloc(size_t size)
 {
-    t_bloc *new_bloc;
-    t_zone *new_zone;
-    size_t alloc_size;
-    static int test = 0;
+    t_bloc  *new_bloc;
+    t_zone  *new_zone;
+    static int tour = 0;
 
+    tour += 1;
     new_bloc = NULL;
     new_zone = NULL;
-    test += 1;
-    alloc_size = sizeof(t_zone);
-    alloc_size += sizeofzone_with_blocsize(size);
-    if (get_first_zone())
-        printf("%s - %d\n", "C est fait !", test);
-    new_zone = mmap(0, alloc_size, PROT_READ | PROT_WRITE, \
-					MAP_ANON | MAP_PRIVATE, -1, 0);
-    init_zone(new_zone, size);
-    printf("alloc_size: %zu - %d\n", alloc_size, test);
-    printf("Zone->type: %d - %d\n", new_zone->type, test);
-    if (!get_first_zone()) {
-        printf("%s - %d\n\n", "Pas de first !", test);
-        *first_zone() = new_zone;
+    new_bloc = search_for_zone(size);
+    if (!new_bloc)
+    {
+        new_zone = create_zone(size);
+        new_bloc = create_bloc(new_zone, size);
     }
     return ((void*)new_bloc);
 }
 
 int main() {
     char *str;
-    str = (char*)ft_malloc(30505);
-    str = (char*)ft_malloc(1024);
-    str = (char*)ft_malloc(100);
-    // printf("%d\n", getpagesize());
-    // t_memory *list = NULL;
-    // list->a = 10;
-    // list->next = NULL;
+    // str = ft_malloc(200);
+    // printf("%d\n", str);
+    // str = ft_malloc(200);
+    // printf("%d\n\n", str);
+    // str = ft_malloc(200);
+    // printf("%d\n\n", str);
     // printf("%lu\n", TINY_ZONE);
     // printf("%lu\n", SMALL_ZONE);
     // printf("%d\n", getpagesize());
-    // int i = 0;
-    // while (i < 1024) {
-    //     str = (char*)ft_malloc(1024);
-    //     str[0] = 42;
-    //     i++;
-    // }
+    int i = 0;
+    while (i < 1024) {
+        str = (char*)ft_malloc(1024);
+        str[0] = 42;
+        i++;
+    }
+    // printf("%zu\n", ZONE_CALC(SMALL_SIZE));
+    test_zone();
 
     return (0);
 }

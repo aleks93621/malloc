@@ -1,0 +1,62 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   zone.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/10/17 08:49:31 by aaleksov          #+#    #+#             */
+/*   Updated: 2019/10/17 12:35:37 by aaleksov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/malloc.h"
+
+void	init_zone(t_zone *new_zone, size_t bloc_size)
+{
+	new_zone->type = typeofzone_with_blocsize(bloc_size);
+	new_zone->zone_size = sizeofzone_with_blocsize(bloc_size);
+	new_zone->actual_size = 0;
+	if (typeofzone_with_blocsize(bloc_size) == LARGE)
+		new_zone->actual_size += SIZE_B;
+	new_zone->blocs = NULL;
+	new_zone->next = NULL;
+}
+
+void	addzone_to_zones(t_zone *new_zone)
+{
+	t_zone *first_zone;
+
+	first_zone = get_first_zone();
+	while (first_zone->next)
+		first_zone = first_zone->next;
+	first_zone->next = new_zone;
+}
+
+t_zone	*alloc_zone(size_t bloc_size)
+{
+	t_zone *new_zone;
+	size_t alloc_size;
+
+	new_zone = NULL;
+	alloc_size = sizeofzone_with_blocsize(bloc_size) + SIZE_Z;
+	if (typeofzone_with_blocsize(bloc_size) == LARGE)
+		alloc_size += SIZE_B;
+	new_zone = mmap(0, alloc_size, PROT_READ | PROT_WRITE, \
+					MAP_ANON | MAP_PRIVATE, -1, 0);
+	return (new_zone);
+}
+
+t_zone	*create_zone(size_t bloc_size)
+{
+	t_zone *zone;
+
+	zone = NULL;
+	zone = alloc_zone(bloc_size);
+	init_zone(zone, bloc_size);
+	if (!get_first_zone())
+		*first_zone() = zone;
+	else if (zone)
+		addzone_to_zones(zone);
+	return (zone);
+}
