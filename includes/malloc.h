@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/10/17 12:24:57 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/10/18 12:17:04 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # define MIN_ALLOC (size_t)100
 # define TINY_SIZE (size_t)128
-# define SMALL_SIZE (size_t)4096
+# define SMALL_SIZE (size_t)1024
 # define TINY_ZONE (size_t)ZONE_CALC(TINY_SIZE)
 # define SMALL_ZONE (size_t)ZONE_CALC(SMALL_SIZE)
 # define ZONE_CALC(SIZE)(size_t)(SIZE*MIN_ALLOC/getpagesize()+1)*getpagesize()
