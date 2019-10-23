@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 12:07:22 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/10/18 12:03:26 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/10/23 12:34:19 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,20 @@ void    test_zone()
 {
     t_zone  *zone;
 
-    zone = get_first_zone();
+    zone = (t_zone*)g_first_addr;
     while(zone)
     {
         printf("Size zone: %zu\n", zone->zone_size);
         printf("Size actuelle: %zu\n", zone->actual_size);
         printf("Libre: %zu\n", zone->zone_size - zone->actual_size);
         printf("Type zone: %d\n\n", zone->type);
-        // if (zone->blocs)
-        //     while (zone->blocs->next)
-        //     {
-        //         printf("Size bloc: %zu\n\n", (void*)zone->blocs->bloc_size);
-        //         zone->blocs = zone->blocs->next;
-        //     }
+        if (zone->blocs) {
+            while (zone->blocs)
+            {
+                printf("Size bloc: %zu\n\n", (void*)zone->blocs->bloc_size);
+                zone->blocs = zone->blocs->next;
+            }
+        }
         zone = zone->next;
     }
 }
@@ -39,7 +40,7 @@ t_bloc  *search_for_zone(size_t bloc_size)
     t_bloc  *bloc;
 
     bloc = NULL;
-    zone = get_first_zone();
+    zone = (t_zone*)g_first_addr;
     while(zone)
     {
         if (zone
@@ -74,11 +75,11 @@ void    *ft_malloc(size_t size)
 int main() {
     char *str;
     str = ft_malloc(200);
-    printf("%p\n", str);
+    // printf("%p\n", str);
     str = ft_malloc(201);
-    printf("%p\n\n", str);
+    // printf("%p\n\n", str);
     str = ft_malloc(202);
-    printf("%p\n\n", str);
+    // printf("%p\n\n", str);
     // printf("%lu\n", TINY_ZONE);
     // printf("%lu\n", SMALL_ZONE);
     // printf("%d\n", getpagesize());
@@ -89,7 +90,7 @@ int main() {
     //     i++;
     // }
     // // printf("%zu\n", ZONE_CALC(SMALL_SIZE));
-    test_zone();
+    // test_zone();
 
     return (0);
 }

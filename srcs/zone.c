@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 08:49:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/10/17 12:35:37 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/10/23 12:28:46 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	addzone_to_zones(t_zone *new_zone)
 {
 	t_zone *first_zone;
 
-	first_zone = get_first_zone();
+	first_zone = (t_zone*)g_first_addr;
 	while (first_zone->next)
 		first_zone = first_zone->next;
 	first_zone->next = new_zone;
@@ -50,13 +50,16 @@ t_zone	*alloc_zone(size_t bloc_size)
 t_zone	*create_zone(size_t bloc_size)
 {
 	t_zone *zone;
+	t_zone *test;
 
 	zone = NULL;
 	zone = alloc_zone(bloc_size);
 	init_zone(zone, bloc_size);
-	if (!get_first_zone())
-		*first_zone() = zone;
+	if (!g_first_addr)
+		g_first_addr = (void*)zone;
 	else if (zone)
 		addzone_to_zones(zone);
+	test = (t_zone*)g_first_addr;
+	printf("Valeur type premiere zone: %d\n", test->type);
 	return (zone);
 }

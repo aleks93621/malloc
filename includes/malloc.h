@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/10/18 12:17:04 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/10/23 12:28:32 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,10 @@ typedef struct		s_bloc
 	struct s_bloc	*next;
 }					t_bloc;
 
+void				*g_first_addr;
+
 size_t				sizeofzone_with_blocsize(size_t bloc_size);
 t_mtype				typeofzone_with_blocsize(size_t bloc_size);
-
-t_zone				**first_zone();
-t_zone				*get_first_zone();
 
 t_zone				*create_zone(size_t bloc_size);
 void				init_zone(t_zone *new_zone, size_t bloc_size);
