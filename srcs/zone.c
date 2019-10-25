@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 08:49:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/10/23 12:28:46 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/10/25 15:16:51 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	init_zone(t_zone *new_zone, size_t bloc_size)
 {
 	new_zone->type = typeofzone_with_blocsize(bloc_size);
 	new_zone->zone_size = sizeofzone_with_blocsize(bloc_size);
-	new_zone->actual_size = 0;
+	new_zone->actual_size = SIZE_Z;
 	if (typeofzone_with_blocsize(bloc_size) == LARGE)
 		new_zone->actual_size += SIZE_B;
 	new_zone->blocs = NULL;
@@ -39,7 +39,7 @@ t_zone	*alloc_zone(size_t bloc_size)
 	size_t alloc_size;
 
 	new_zone = NULL;
-	alloc_size = sizeofzone_with_blocsize(bloc_size) + SIZE_Z;
+	alloc_size = sizeofzone_with_blocsize(bloc_size);
 	if (typeofzone_with_blocsize(bloc_size) == LARGE)
 		alloc_size += SIZE_B;
 	new_zone = mmap(0, alloc_size, PROT_READ | PROT_WRITE, \
@@ -60,6 +60,5 @@ t_zone	*create_zone(size_t bloc_size)
 	else if (zone)
 		addzone_to_zones(zone);
 	test = (t_zone*)g_first_addr;
-	printf("Valeur type premiere zone: %d\n", test->type);
 	return (zone);
 }

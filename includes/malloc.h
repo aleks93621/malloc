@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/10/23 12:28:32 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/10/25 14:59:29 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define ZONE_CALC(SIZE)(size_t)(SIZE*MIN_ALLOC/getpagesize()+1)*getpagesize()
 # define SIZE_Z sizeof(t_zone)
 # define SIZE_B sizeof(t_bloc)
-# define POINT_Z(zone) (void*)(zone + 1)
-# define POINT_B(bloc) (void*)(bloc + 1)
+# define POINT_Z(zone) (void*)(zone)
+# define POINT_B(bloc) (void*)(bloc)
 
 typedef enum		e_mtype
 {
@@ -58,7 +58,7 @@ t_zone				*create_zone(size_t bloc_size);
 void				init_zone(t_zone *new_zone, size_t bloc_size);
 void				addzone_to_zones(t_zone *new_zone);
 
-t_bloc				*addr_zone(void *zone);
+t_bloc				*addr_zone(t_zone *zone, void *z_addr);
 void				init_bloc(t_bloc *new_bloc, size_t bloc_size);
 void				addbloc_to_zone(t_bloc *new_bloc, t_zone *zone);
 t_bloc				*create_bloc(t_zone *zone, size_t bloc_size);
