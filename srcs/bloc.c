@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 10:52:49 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/07 09:42:42 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/07 10:07:06 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*addr_zone(t_zone *zone, void *z_addr)
 {
 	void	*new_bloc;
 
-	new_bloc = z_addr + zone->actual_size + 1;
+	new_bloc = z_addr + zone->actual_size;
 	return (new_bloc);
 }
 

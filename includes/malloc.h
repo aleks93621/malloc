@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/07 09:22:17 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/07 10:07:01 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define ZONE_CALC(SIZE)(size_t)(SIZE*MIN_ALLOC/getpagesize()+1)*getpagesize()
 # define SIZE_Z sizeof(t_zone)
 # define SIZE_B sizeof(t_bloc)
-# define POINT_Z(zone) (void*)(zone)
-# define POINT_B(bloc) (void*)(bloc)
+# define POINT_Z(zone) (void*)(zone + 1)
+# define POINT_B(bloc) (void*)(bloc + 1)
 
 typedef enum		e_mtype
 {

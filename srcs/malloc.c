@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 12:07:22 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/07 09:30:31 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/07 10:07:39 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ void	*ft_malloc(size_t size)
 		new_zone = create_zone(size);
 		new_bloc = create_bloc(new_zone, size);
 	}
-	return (new_bloc);
+	return (POINT_B(new_bloc));
 }
