@@ -6,13 +6,12 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 09:21:22 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/07 09:22:04 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/07 10:11:02 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-void ft_free(void *ptr)
+void	ft_free(void *ptr)
 {
-
 }
