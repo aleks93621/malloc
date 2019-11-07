@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 07:52:30 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/07 09:19:06 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/07 09:59:45 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,37 +23,42 @@ void    test_zone()
     int j = 0;
     while(zone)
     {
-        // printf("Size zone: %zu\n", zone->zone_size);
-        // printf("Size actuelle: %zu\n", zone->actual_size);
-        printf("Addr Zone: %zu\n", zone->addr);
-        printf("Libre: %zu\n", zone->zone_size - zone->actual_size);
-        printf("Sizeof(zone) = %zu / Sizeof(bloc) = %zu\n", SIZE_Z, SIZE_B);
-        printf("Type zone: %d\n\n", zone->type);
+        printf("---- ZONE NUMERO %d ----\n", i + 1);
+        printf("zone->addr: %zu\n", zone->addr);
+        printf("zone->size: %zu\n", zone->zone_size);
+        printf("zone->actual_size: %zu\n", zone->actual_size);
+        printf("Espace Libre: %zu\n", zone->zone_size - zone->actual_size);
+        printf("zone->type: %s\n", zone->type == 0 ? "TINY" : zone->type == 1 ? "SMALL" : "LARGE");
+        printf("Sizeof(zone) = %zu / Sizeof(bloc) = %zu\n\n", SIZE_Z, SIZE_B);
         if (zone->blocs) {
             bloc = zone->blocs;
             j = 0;
             while (bloc)
             {
-                printf("Size bloc: %zu, Addr Bloc: %zu\n", bloc->bloc_size, (void*)bloc);
+                printf("%d) bloc->bloc_size: %zu -- bloc->addr: %zu\n", j+1, bloc->bloc_size, bloc->addr);
                 j++;
                 bloc = bloc->next;
             }
-            // printf("Nombre de blocs %d sur la page %d\n", j, i+1);
+            printf("Nombre de blocs: %d\n\n", j);
         }
         zone = zone->next;
         i++;
         // printf("\n");
     }
-    printf("\nNombre de pages: %d\n", i);
+    printf("------------------\nNombre de zones: %d\n", i);
 }
 
 int main()
 {
     char *str;
-    char *str2;
 
-    str = (char*)ft_malloc(sizeof(char) * 8);
-    str2 = (char*)ft_malloc(sizeof(char) * 90);
+    ft_malloc(8);
+    ft_malloc(90);
+    ft_malloc(4096);
+    ft_malloc(1000);
+    ft_malloc(1000);
+    ft_malloc(1000);
+    // printf("\n\n\n");
     test_zone();
 
     return (0);

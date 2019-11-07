@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 09:18:54 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/10/17 12:39:53 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/07 09:44:28 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ size_t	sizeofzone_with_blocsize(size_t bloc_size)
 	else if (bloc_size <= SMALL_SIZE)
 		return (SMALL_ZONE);
 	else
-		return (bloc_size);
+		return (bloc_size + SIZE_B + SIZE_Z);
 }
