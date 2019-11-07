@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 08:49:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/10/25 15:16:51 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/07 09:08:23 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_zone(t_zone *new_zone, size_t bloc_size)
 {
+	new_zone->addr = (void*)new_zone;
 	new_zone->type = typeofzone_with_blocsize(bloc_size);
 	new_zone->zone_size = sizeofzone_with_blocsize(bloc_size);
 	new_zone->actual_size = SIZE_Z;
@@ -50,7 +51,6 @@ t_zone	*alloc_zone(size_t bloc_size)
 t_zone	*create_zone(size_t bloc_size)
 {
 	t_zone *zone;
-	t_zone *test;
 
 	zone = NULL;
 	zone = alloc_zone(bloc_size);
@@ -59,6 +59,5 @@ t_zone	*create_zone(size_t bloc_size)
 		g_first_addr = (void*)zone;
 	else if (zone)
 		addzone_to_zones(zone);
-	test = (t_zone*)g_first_addr;
 	return (zone);
 }
