@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 12:07:22 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/07 07:59:52 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/07 09:30:31 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	*ft_malloc(size_t size)
 	new_zone = NULL;
 	if (size <= 0)
 		return (NULL);
-	new_bloc = search_for_zone(size);
+	if (typeofzone_with_blocsize(size) != LARGE)
+		new_bloc = search_for_zone(size);
 	if (!new_bloc)
 	{
 		new_zone = create_zone(size);
