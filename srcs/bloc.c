@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 10:52:49 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/07 10:07:06 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/13 10:06:11 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,11 @@ void	addbloc_to_zone(t_bloc *new_bloc, t_zone *zone)
 
 	blocs = zone->blocs;
 	if (!blocs)
-	{
 		zone->blocs = new_bloc;
-	}
 	else
 	{
 		while (blocs->next)
-		{
 			blocs = blocs->next;
-		}
 		blocs->next = new_bloc;
 	}
 	zone->actual_size += new_bloc->bloc_size + SIZE_B;

@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   research.c                                         :+:      :+:    :+:   */
+/*   test2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/15 09:18:54 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/13 09:20:00 by aaleksov         ###   ########.fr       */
+/*   Created: 2019/11/07 07:48:45 by aaleksov          #+#    #+#             */
+/*   Updated: 2019/11/13 10:24:11 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-t_mtype	typeofzone_with_blocsize(size_t bloc_size)
-{
-	if (bloc_size <= TINY_SIZE)
-		return (TINY);
-	else if (bloc_size <= SMALL_SIZE)
-		return (SMALL);
-	else
-		return (LARGE);
-}
+int main() {
+    int i;
+    char *addr;
 
-size_t	sizeofzone_with_blocsize(size_t bloc_size)
-{
-	if (bloc_size <= TINY_SIZE)
-		return (TINY_ZONE);
-	else if (bloc_size <= SMALL_SIZE)
-		return (SMALL_ZONE);
-	else
-		return (bloc_size + SIZE_B + SIZE_Z);
+    i = 0;
+    while (i < 1024)
+    {
+        addr = (char*)ft_malloc(1024);
+        addr[0] = 42;
+        // ft_free(addr);
+        i++;
+    }
+    return (0);
 }
