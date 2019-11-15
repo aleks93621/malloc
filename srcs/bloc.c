@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 10:52:49 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/13 10:06:11 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/15 09:57:26 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	init_bloc(t_bloc *new_bloc, size_t bloc_size)
 {
 	if (new_bloc)
 	{
-		new_bloc->addr = (void*)new_bloc;
 		new_bloc->bloc_size = bloc_size;
 		new_bloc->next = NULL;
 	}

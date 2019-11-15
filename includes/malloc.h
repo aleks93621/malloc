@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/13 09:19:35 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/15 10:55:24 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef enum		e_mtype
 
 typedef struct		s_zone
 {
-	void			*addr;
 	t_mtype			type;
 	size_t			zone_size;
 	size_t			actual_size;
@@ -46,7 +45,6 @@ typedef struct		s_zone
 
 typedef struct		s_bloc
 {
-	void			*addr;
 	size_t			bloc_size;
 	struct s_bloc	*next;
 }					t_bloc;
@@ -67,5 +65,7 @@ void				*addr_zone(t_zone *zone, void *z_addr);
 void				init_bloc(t_bloc *new_bloc, size_t bloc_size);
 void				addbloc_to_zone(t_bloc *new_bloc, t_zone *zone);
 t_bloc				*create_bloc(t_zone *zone, size_t bloc_size);
+
+t_bloc				*searchbloc_with_addr(void *ptr);
 
 #endif
