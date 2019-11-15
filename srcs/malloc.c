@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 12:07:22 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/13 10:11:56 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/15 08:11:38 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_bloc	*search_for_zone(size_t bloc_size)
 	{
 		if (zone
 		&& zone->type == typeofzone_with_blocsize(bloc_size)
-		&& (bloc_size + zone->actual_size + SIZE_B) <= zone->zone_size)
+		&& (bloc_size + zone->actual_size + SIZE_B) < zone->zone_size)
 			return (bloc = create_bloc(zone, bloc_size));
 		zone = zone->next;
 	}
