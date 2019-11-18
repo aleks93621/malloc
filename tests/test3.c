@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test1.c                                            :+:      :+:    :+:   */
+/*   test3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 07:48:45 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/18 11:01:31 by aaleksov         ###   ########.fr       */
+/*   Created: 2019/11/18 10:52:27 by aaleksov          #+#    #+#             */
+/*   Updated: 2019/11/18 10:59:20 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-int	main(void)
-{
-	int		i;
-	char	*addr;
+#define M (1024 * 1024)
 
-	i = 0;
-	while (i < 1024)
-	{
-		addr = (char*)ft_malloc(1024);
-		addr[0] = 42;
-		i++;
-	}
+void	print(char *s)
+{
+	write(1, s, ft_strlen(s));
+}
+
+int		main(void)
+{
+	char	*addr1;
+	char	*addr3;
+
+	addr1 = (char*)malloc(16 * M);
+	ft_strcpy(addr1, "Bonjours\n");
+	print(addr1);
+	addr3 = (char*)realloc(addr1, 128 * M);
+	addr3[127 * M] = 42;
+	print(addr3);
 	return (0);
 }

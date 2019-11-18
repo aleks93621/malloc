@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test1.c                                            :+:      :+:    :+:   */
+/*   realloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 07:48:45 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/18 11:01:31 by aaleksov         ###   ########.fr       */
+/*   Created: 2019/11/18 10:36:26 by aaleksov          #+#    #+#             */
+/*   Updated: 2019/11/18 10:38:02 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-int	main(void)
+void *ft_realloc(void *ptr, size_t size)
 {
-	int		i;
-	char	*addr;
-
-	i = 0;
-	while (i < 1024)
-	{
-		addr = (char*)ft_malloc(1024);
-		addr[0] = 42;
-		i++;
-	}
-	return (0);
+	return (NULL);
 }

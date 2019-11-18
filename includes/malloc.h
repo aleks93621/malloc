@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/15 10:55:24 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/18 10:36:57 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,12 @@ void				*g_first_addr;
 
 void				*ft_malloc(size_t size);
 void				ft_free(void *ptr);
+void				*ft_realloc(void *ptr, size_t size);
 
 size_t				sizeofzone_with_blocsize(size_t bloc_size);
 t_mtype				typeofzone_with_blocsize(size_t bloc_size);
+t_bloc				*searchbloc_with_addr(void *ptr);
+t_zone				*searchzone_with_bloc(t_bloc *bloc);
 
 t_zone				*create_zone(size_t bloc_size);
 void				init_zone(t_zone *new_zone, size_t bloc_size);
@@ -66,6 +69,10 @@ void				init_bloc(t_bloc *new_bloc, size_t bloc_size);
 void				addbloc_to_zone(t_bloc *new_bloc, t_zone *zone);
 t_bloc				*create_bloc(t_zone *zone, size_t bloc_size);
 
-t_bloc				*searchbloc_with_addr(void *ptr);
+void				remove_zone(t_zone *zone_rem);
+void				removebloc_from_zone(t_zone *zone, t_bloc *bloc_rem);
+void				unmap_zone(t_zone *zone);
+int					page_is_free(t_zone *zone);
+void				clean_zones(t_mtype zonetype);
 
 #endif

@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test1.c                                            :+:      :+:    :+:   */
+/*   test5.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 07:48:45 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/18 11:01:31 by aaleksov         ###   ########.fr       */
+/*   Created: 2019/11/18 10:56:46 by aaleksov          #+#    #+#             */
+/*   Updated: 2019/11/18 10:57:55 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-int	main(void)
+void	print(char *s)
 {
-	int		i;
+	write(1, s, strlen(s));
+}
+
+int		main(void)
+{
 	char	*addr;
 
-	i = 0;
-	while (i < 1024)
-	{
-		addr = (char*)ft_malloc(1024);
-		addr[0] = 42;
-		i++;
-	}
-	return (0);
+	addr = malloc(16);
+	free(NULL);
+	free((void *)addr + 5);
+	if (realloc((void *)addr + 5, 10) == NULL)
+		print("Bonjours\n");
 }

@@ -6,20 +6,21 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 07:47:16 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/07 07:48:17 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/18 11:02:09 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-int main() {
-    int i;
-    char *addr;
+int	main(void)
+{
+	int		i;
+	char	*addr;
 
-    i = 0;
-    while (i < 1024)
-    {
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (i < 1024)
+	{
+		i++;
+	}
+	return (0);
 }

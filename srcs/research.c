@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 09:18:54 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/13 09:20:00 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/18 10:08:26 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,44 @@ size_t	sizeofzone_with_blocsize(size_t bloc_size)
 		return (SMALL_ZONE);
 	else
 		return (bloc_size + SIZE_B + SIZE_Z);
+}
+
+t_bloc	*searchbloc_with_addr(void *ptr)
+{
+	t_zone	*zone;
+	t_bloc	*blocs;
+
+	zone = (t_zone*)g_first_addr;
+	while (zone)
+	{
+		blocs = zone->blocs;
+		while (blocs)
+		{
+			if (POINT_B(blocs) == ptr)
+				return (blocs);
+			blocs = blocs->next;
+		}
+		zone = zone->next;
+	}
+	return (NULL);
+}
+
+t_zone	*searchzone_with_bloc(t_bloc *bloc)
+{
+	t_zone	*zone;
+	t_bloc	*blocs;
+
+	zone = (t_zone*)g_first_addr;
+	while (zone)
+	{
+		blocs = zone->blocs;
+		while (blocs)
+		{
+			if (POINT_B(bloc) == POINT_B(blocs))
+				return (zone);
+			blocs = blocs->next;
+		}
+		zone = zone->next;
+	}
+	return (NULL);
 }
