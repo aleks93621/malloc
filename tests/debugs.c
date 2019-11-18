@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 07:52:30 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/18 10:38:31 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/18 11:17:36 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,31 @@ void    test_zone()
 
 int main()
 {
-    ft_malloc(1024);
-    ft_malloc(1024 * 32);
-    ft_malloc(1024 * 1024);
-    ft_malloc(1024 * 1024 * 16);
-    ft_malloc(1024 * 1024 * 128);
+    char **str;
+    char **str2;
+    int i = 0;
+    str = (char**)ft_malloc(sizeof(char*) * 1);
+    str2 = (char**)ft_malloc(sizeof(char*) * 1);    
+
+    str[0] = (char*)ft_malloc(sizeof(char) * 8 + 1);
+    str2[0] = (char*)ft_malloc(sizeof(char) * 8 + 1);  
+    while (i < 8) {
+        str[0][i] = '0';
+        i++;
+    }
+    str[0][i] = '\0';
+    i = 0;
+    while (i < 8) {
+        str2[0][i] = '0';
+        i++;
+    }
+    str2[0][i] = '\0';
+    printf("mot: %s\n", str[0]);
+    ft_free(str[0]);
+    ft_free(str);
+    printf("mot2: %s\n", str2[0]);
+    ft_free(str2[0]);
+    ft_free(str);
     test_zone();
 
     return (0);
