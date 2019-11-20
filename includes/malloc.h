@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/20 10:59:14 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/20 13:20:15 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/mman.h>
+# include <stdio.h>
 
 # define MIN_ALLOC (size_t)100
 # define TINY_SIZE (size_t)128
@@ -28,6 +29,14 @@
 # define SIZE_B sizeof(t_bloc)
 # define POINT_Z(zone) (void*)(zone + 1)
 # define POINT_B(bloc) (void*)(bloc + 1)
+# define CNORM	"\x1B[0m"
+# define CROU	"\x1B[31m"
+# define CVER	"\x1B[32m"
+# define CJAU	"\x1B[33m"
+# define CBLE	"\x1B[34m"
+# define CMAG	"\x1B[35m"
+# define CCYA	"\x1B[36m"
+# define CBLA	"\x1B[37m"
 
 typedef enum		e_mtype
 {
@@ -56,6 +65,7 @@ void				*g_first_addr;
 void				*ft_malloc(size_t size);
 void				ft_free(void *ptr);
 void				*ft_realloc(void *ptr, size_t size);
+void				show_alloc_mem();
 
 size_t				sizeofzone_with_blocsize(size_t bloc_size);
 t_mtype				typeofzone_with_blocsize(size_t bloc_size);
@@ -77,9 +87,19 @@ void				unmap_zone(t_zone *zone);
 int					page_is_free(t_zone *zone);
 void				clean_zones(t_mtype zonetype);
 
-void				*ft_memcpy(void *dest, const void *src, size_t n);
 void				*malloc_cpy(t_zone *zone, t_bloc *bloc, size_t size);
 void				zone_and_blocsize(t_zone *zone, t_bloc *bloc, size_t size);
 size_t				min_size(size_t a, size_t b);
+
+void				display_total(size_t total);
+void				display_bloc_infos(void *start, void *end, size_t size);
+void				display_zone_infos(t_zone *zone, void *zone_addr);
+void				ft_display_addr(size_t num, char *base_str, int base);
+int					ft_len_num(size_t num, int base);
+
+void				ft_putchar(char c);
+void				ft_putchar_fd(char c, int fd);
+void				ft_putstr(char const *s);
+void				*ft_memcpy(void *dest, const void *src, size_t n);
 
 #endif
