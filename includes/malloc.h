@@ -6,14 +6,16 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/18 10:36:57 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/20 10:59:14 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MALLOC_H
 # define MALLOC_H
 
-# include "../libft/libft/includes/libft.h"
+# include <string.h>
+# include <unistd.h>
+# include <stdlib.h>
 # include <sys/mman.h>
 
 # define MIN_ALLOC (size_t)100
@@ -74,5 +76,10 @@ void				removebloc_from_zone(t_zone *zone, t_bloc *bloc_rem);
 void				unmap_zone(t_zone *zone);
 int					page_is_free(t_zone *zone);
 void				clean_zones(t_mtype zonetype);
+
+void				*ft_memcpy(void *dest, const void *src, size_t n);
+void				*malloc_cpy(t_zone *zone, t_bloc *bloc, size_t size);
+void				zone_and_blocsize(t_zone *zone, t_bloc *bloc, size_t size);
+size_t				min_size(size_t a, size_t b);
 
 #endif
