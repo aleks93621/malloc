@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 10:36:26 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/22 09:15:18 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/22 10:44:13 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,24 @@ void	*malloc_cpy(t_bloc *bloc, size_t size)
 {
 	void	*new_malloc;
 
-	new_malloc = ft_malloc(size);
+	new_malloc = malloc(size);
 	if (new_malloc)
 	{
 		ft_memcpy(new_malloc, POINT_B(bloc), min_size(size, bloc->bloc_size));
-		ft_free(POINT_B(bloc));
+		free(POINT_B(bloc));
 	}
 	return (new_malloc);
 }
 
-void	*ft_realloc(void *ptr, size_t size)
+void	*realloc(void *ptr, size_t size)
 {
 	t_bloc	*bloc_ptr;
 	t_zone	*zone;
 
 	if (!ptr)
-		return (ft_malloc(size));
+		return (malloc(size));
 	else if (size == 0)
-		ft_free(ptr);
+		free(ptr);
 	else if ((bloc_ptr = searchbloc_with_addr(ptr)) != NULL)
 	{
 		zone = searchzone_with_bloc(bloc_ptr);
