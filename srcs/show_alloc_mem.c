@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 11:09:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/20 13:21:04 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/22 09:45:39 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	display_total(size_t total)
 {
-	ft_putstr("\x1b[1m");
+	ft_putstr(CBOL);
 	ft_putstr(CROU);
 	ft_putstr("Total : ");
 	ft_putstr(CNORM);
@@ -34,7 +34,7 @@ void	display_bloc_infos(void *start, void *end, size_t size)
 
 void	display_zone_infos(t_zone *zone, void *zone_addr)
 {
-	ft_putstr("\x1b[1m");
+	ft_putstr(CBOL);
 	ft_putstr(CVER);
 	if (zone->type == 0)
 		ft_putstr("TINY : ");

@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/22 09:14:37 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/22 09:45:26 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define CMAG	"\x1B[35m"
 # define CCYA	"\x1B[36m"
 # define CBLA	"\x1B[37m"
+# define CBOL	"\x1b[1m"
 
 typedef enum		e_mtype
 {

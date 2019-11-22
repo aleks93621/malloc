@@ -6,7 +6,7 @@
 #    By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/17 11:45:43 by aaleksov          #+#    #+#              #
-#    Updated: 2019/11/22 09:13:35 by aaleksov         ###   ########.fr        #
+#    Updated: 2019/11/22 10:35:09 by aaleksov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,12 @@ endif
 
 CV=\033[32m
 CJ=\033[033m
-CNOR=\033[0m
 CR=\x1b[31m
+CBOL=\x1b[1m
+CNOR=\033[0m
 
-
-NAME = libft_malloc_$(HOSTTYPE).so
+NAME = libft_malloc.so
+LIB = libft_malloc_$(HOSTTYPE).so
 
 SRCS_PATH=./srcs
 
@@ -37,7 +38,7 @@ SRCS_NAME=bloc.c \
 
 SRCS=$(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
-OBJS_PATH = objects/
+OBJS_PATH = ./objects/
 
 OBJS_NAME = $(SRCS_NAME:.c=.o)
 
@@ -47,23 +48,21 @@ CC=gcc
 
 FLAGS=-Wall -Werror -Wall
 
-all: crdir $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJS)
-	@$(CC) $(FLAGS) $(OBJ_COLLEEN) -o ./Colleen/Colleen
-	@echo "$(CV)------------ Colleen ...$(CNOR)"
+$(NAME): $(LIB)
+	@ln -sf $^ $@
+	@echo "$(CBOL)$(CV)[MALLOC]Création du lien symbolique:$(CNOR)\t$(CBOL)$@$(CNOR)"
 
-%.o: %.c
-	@clang $(FLAG) -o $@ -c $<
-	@echo "$(CV)[DR_QUINE] : Compilation $<$(CNOR)";
+
 
 clean:
-	@rm -rf $(OBJ_SULLY) $(OBJ_GRACE) $(OBJ_COLLEEN)
-	@echo "$(CR)[DR_QUINE] : Suppression des objets$(CNOR)";
+	@rm -rf $(OBJS_PATH)
+	@echo "$(CBOL)(CR)[MALLOC]$(NOR)$(CBOL)\tSuppression des objets$(CNOR)";
 
 fclean: clean
-	@rm -rf ./Sully/Sully ./Colleen/Colleen ./Grace/Grace ./Sully/Sully_* ./Grace/Grace_kid.c
-	@echo "$(CR)[DR_QUINE] : Suppression des fichiers supplementaires$(CNOR)";
+	@rm -rf $(NAME) $(LIB)
+	@echo "$(CBOL)(CR)[MALLOC]$(NOR)$(CBOL)\tSuppression des fichiers supplémentaires$(CNOR)";
 
 re: fclean all
 
