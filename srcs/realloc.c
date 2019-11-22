@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 10:36:26 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/20 10:52:34 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/22 09:15:18 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	zone_and_blocsize(t_zone *zone, t_bloc *bloc, size_t size)
 	bloc->bloc_size = size;
 }
 
-void	*malloc_cpy(t_zone *zone, t_bloc *bloc, size_t size)
+void	*malloc_cpy(t_bloc *bloc, size_t size)
 {
 	void	*new_malloc;
 
@@ -78,7 +78,7 @@ void	*ft_realloc(void *ptr, size_t size)
 				return (ptr);
 			}
 			else
-				return (malloc_cpy(zone, bloc_ptr, size));
+				return (malloc_cpy(bloc_ptr, size));
 		}
 	}
 	return (NULL);

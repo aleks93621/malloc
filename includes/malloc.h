@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/20 13:20:15 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/22 09:14:37 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void				unmap_zone(t_zone *zone);
 int					page_is_free(t_zone *zone);
 void				clean_zones(t_mtype zonetype);
 
-void				*malloc_cpy(t_zone *zone, t_bloc *bloc, size_t size);
+void				*malloc_cpy(t_bloc *bloc, size_t size);
 void				zone_and_blocsize(t_zone *zone, t_bloc *bloc, size_t size);
 size_t				min_size(size_t a, size_t b);
 

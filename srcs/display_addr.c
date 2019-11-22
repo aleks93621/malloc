@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 12:41:52 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/20 13:20:51 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/22 09:14:01 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void		ft_convert_to_base(size_t num, char *base_str, int base, int len)
 void		ft_display_addr(size_t num, char *base_str, int base)
 {
 	int		len;
-	char	*str;
 
 	if (num == 0 || (base != 16 && base != 10) || base_str == NULL)
 		return ;

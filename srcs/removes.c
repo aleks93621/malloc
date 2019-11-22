@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 10:09:59 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/18 10:13:12 by aaleksov         ###   ########.fr       */
+/*   Updated: 2019/11/22 09:14:48 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	removebloc_from_zone(t_zone *zone, t_bloc *bloc_rem)
 {
 	t_bloc	*blocs;
-	t_bloc	*tmp;
 
 	blocs = zone->blocs;
 	if (POINT_B(blocs) == POINT_B(bloc_rem))
