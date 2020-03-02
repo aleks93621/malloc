@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 12:07:22 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/22 10:43:50 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/02 18:44:22 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_bloc	*search_for_zone(size_t bloc_size)
 	return (bloc);
 }
 
-void	*malloc(size_t size)
+void	*ft_malloc(size_t size)
 {
 	t_bloc *new_bloc;
 	t_zone *new_zone;

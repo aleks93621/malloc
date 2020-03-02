@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 07:52:30 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/22 10:43:50 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/02 18:51:43 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,36 @@ void    test_zone()
 }
 
 
-
 int main()
 {
-    malloc(1024);
-	malloc(1024 * 32);
-	malloc(1024 * 1024);
-	malloc(1024 * 1024 * 16);
-	malloc(1024 * 1024 * 128);
-    test_zone();
+    for (size_t i = 1; i < 5000; i += 3) {
+        void *ptr = ft_malloc(i);
+    
+        if ((uintptr_t)ptr % 16 != 0) {
+            printf("%lu\n", (uintptr_t)ptr % 16);
+            printf("%lu\n", (uintptr_t)ptr);
+            dprintf(STDERR_FILENO, "malloc(%zu) returned a non aligned boundary", i);
+            return -1;
+        }
+        memset(ptr, 'a', i);
+        // ft_free(ptr);
+    }
+    void *data[5000];
+    for (size_t i = 1; i < 5000; i += 3) {
+		data[i] = malloc(i);
+
+		if ((uintptr_t)data[i] % 16 != 0) {
+			dprintf(STDERR_FILENO, "malloc(%zu) returned a non aligned boundary", i);
+			return -1;
+		}
+	}
+    // ft_free(str);
+    // ft_malloc(1024);
+	// ft_malloc(1024 * 32);
+	// ft_malloc(1024 * 1024);
+	// ft_malloc(1024 * 1024 * 16);
+	// ft_malloc(1024 * 1024 * 128);
+    // test_zone();
 
     return (0);
 }

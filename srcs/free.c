@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 09:21:22 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/22 10:44:01 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/02 18:43:48 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void		unmap_zone(t_zone *zone)
 	munmap((void*)zone, unmap_size);
 }
 
-void		free(void *ptr)
+void		ft_free(void *ptr)
 {
 	t_bloc	*bloc_ptr;
 	t_zone	*zone;

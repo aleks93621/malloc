@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2019/11/22 10:44:13 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/02 18:54:35 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ typedef struct		s_bloc
 
 void				*g_first_addr;
 
-void				*malloc(size_t size);
-void				free(void *ptr);
-void				*realloc(void *ptr, size_t size);
+void				*ft_malloc(size_t size);
+void				ft_free(void *ptr);
+void				*ft_realloc(void *ptr, size_t size);
 void				show_alloc_mem();
 
 size_t				sizeofzone_with_blocsize(size_t bloc_size);
