@@ -5,81 +5,62 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/18 10:36:26 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/02 18:44:32 by aaleksov         ###   ########.fr       */
+/*   Created: 2020/03/03 18:08:15 by aaleksov          #+#    #+#             */
+/*   Updated: 2020/03/03 18:14:08 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+static void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*c;
-	unsigned char	*d;
-	int				i;
+	unsigned char	*dst2;
+	unsigned char	*src2;
 
-	i = 0;
-	if (n == 0 || dest == src)
-		return (dest);
-	d = (unsigned char *)src;
-	c = (unsigned char*)dest;
-	while (0 < n)
+	dst2 = (unsigned char *)dst;
+	src2 = (unsigned char *)src;
+	if (src < dst)
 	{
-		c[i] = d[i];
-		n--;
-		i++;
+		src2 = src2 + len - 1;
+		dst2 = dst2 + len - 1;
+		while (len--)
+			*dst2-- = *src2--;
 	}
-	return (c);
-}
-
-size_t	min_size(size_t a, size_t b)
-{
-	return (a >= b ? b : a);
-}
-
-void	zone_and_blocsize(t_zone *zone, t_bloc *bloc, size_t size)
-{
-	zone->actual_size -= bloc->bloc_size + size;
-	bloc->bloc_size = size;
-}
-
-void	*malloc_cpy(t_bloc *bloc, size_t size)
-{
-	void	*new_malloc;
-
-	new_malloc = ft_malloc(size);
-	if (new_malloc)
+	else if (src >= dst)
 	{
-		ft_memcpy(new_malloc, POINT_B(bloc), min_size(size, bloc->bloc_size));
-		ft_free(POINT_B(bloc));
+		while (len--)
+			*dst2++ = *src2++;
 	}
-	return (new_malloc);
+	return (dst);
 }
 
-void	*ft_realloc(void *ptr, size_t size)
+static void	*reallocation(t_bloc *bloc, size_t size)
 {
-	t_bloc	*bloc_ptr;
-	t_zone	*zone;
+	char		*new;
+	t_mtype     old_type;
 
+	old_type = g_zone.type;
+	new = (char *)malloc(size);
+	ft_memmove(new, (char *)bloc + sizeof_bloc(), bloc->size);
+	g_zone.type = old_type;
+	free_on(bloc);
+	return (new);
+}
+
+void		*ft_realloc(void *ptr, size_t size)
+{
+	size_t		new_size;
+	t_bloc		*bloc;
+
+	if ((int)size < 0)
+		return (NULL);
 	if (!ptr)
-		return (ft_malloc(size));
-	else if (size == 0)
-		ft_free(ptr);
-	else if ((bloc_ptr = searchbloc_with_addr(ptr)) != NULL)
-	{
-		zone = searchzone_with_bloc(bloc_ptr);
-		if (zone)
-		{
-			if (zone->type != LARGE && zone->type ==
-			typeofzone_with_blocsize(size) && ((bloc_ptr->bloc_size <= size) ||
-			(size + zone->actual_size <= zone->zone_size)))
-			{
-				zone_and_blocsize(zone, bloc_ptr, size);
-				return (ptr);
-			}
-			else
-				return (malloc_cpy(bloc_ptr, size));
-		}
-	}
-	return (NULL);
+		return (malloc(size));
+	bloc = find_bloc(ptr);
+	if (!bloc)
+		return (NULL);
+	new_size = get_aligned_size(size, 16);
+	if (bloc->size >= new_size)
+		return (ptr);
+	return (reallocation(bloc, new_size));
 }

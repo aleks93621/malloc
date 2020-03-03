@@ -5,70 +5,63 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 09:21:22 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/02 18:43:48 by aaleksov         ###   ########.fr       */
+/*   Created: 2020/03/03 17:33:06 by aaleksov          #+#    #+#             */
+/*   Updated: 2020/03/03 17:57:50 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-int			page_is_free(t_zone *zone)
+static void	merge_free_blocs(t_bloc *b1, t_bloc *b2)
 {
-	if (zone->blocs)
-		return (0);
-	return (1);
-}
+	t_bloc		*b2_next;
 
-void		clean_zones(t_mtype zonetype)
-{
-	t_zone		*zones;
-	int			first;
-
-	first = 1;
-	zones = (t_zone*)g_first_addr;
-	while (zones)
+	if ((char *)b1 + sizeof_bloc() + b1->size == (char *)b2)
 	{
-		if (zones->type == zonetype)
-		{
-			if (first)
-				first = 0;
-			else if (page_is_free(zones))
-				unmap_zone(zones);
-		}
-		zones = zones->next;
+		b1->size = b1->size + sizeof_bloc() + b2->size;
+		b2_next = b2->next;
+		b1->next = b2_next;
+		if (b2_next)
+			b2_next->prev = b1;
+		b2->next = NULL;
+		b2->prev = NULL;
+		b2->size = 0;
 	}
 }
 
-void		unmap_zone(t_zone *zone)
+void		free_on(t_bloc *bloc)
 {
-	size_t	unmap_size;
+	t_bloc	*left;
+	t_bloc	*right;
 
-	remove_zone(zone);
-	unmap_size = zone->zone_size;
-	if (zone->type != LARGE)
-		unmap_size += SIZE_Z;
-	munmap((void*)zone, unmap_size);
+	bloc->status = FREE;
+	left = bloc->prev;
+	right = bloc->next;
+	if (g_zone.type == LARGE)
+	{
+		if (left)
+			left->next = bloc->next;
+		else
+			g_zone.large = NULL;
+		if (right)
+			right->prev = bloc->prev;
+		munmap(bloc, bloc->size + sizeof_bloc());
+	}
+	else
+	{
+		if (right && right->status == FREE)
+			merge_free_blocs(bloc, right);
+		if (left && left->status == FREE)
+			merge_free_blocs(left, bloc);
+	}
 }
 
-void		ft_free(void *ptr)
+void        ft_free(void *ptr)
 {
-	t_bloc	*bloc_ptr;
-	t_zone	*zone;
+    t_bloc		*b_to_free;
 
-	bloc_ptr = searchbloc_with_addr(ptr);
-	if (bloc_ptr)
-	{
-		zone = searchzone_with_bloc(bloc_ptr);
-		if (zone)
-		{
-			zone->actual_size -= bloc_ptr->bloc_size + SIZE_B;
-			if (zone->type == LARGE)
-				zone->actual_size -= SIZE_Z;
-			removebloc_from_zone(zone, bloc_ptr);
-			if (zone->type == LARGE)
-				unmap_zone(zone);
-			else
-				clean_zones(zone->type);
-		}
-	}
+    if (ptr == NULL)
+		return ;
+    b_to_free = find_bloc(ptr);
+    free_on(b_to_free);
 }

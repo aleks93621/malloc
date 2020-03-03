@@ -6,7 +6,7 @@
 #    By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/17 11:45:43 by aaleksov          #+#    #+#              #
-#    Updated: 2019/11/22 11:53:19 by aaleksov         ###   ########.fr        #
+#    Updated: 2020/03/03 18:14:32 by aaleksov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,16 +27,14 @@ LIB = libft_malloc.so
 
 SRCS_PATH = ./srcs/
 
-SRCS_NAME = bloc.c \
-		display_addr.c \
-		free.c \
+SRCS_NAME = exist_or_expand.c \
 		malloc.c \
-		realloc.c \
-		removes.c \
-		research.c \
-		show_alloc_mem.c \
 		utils.c \
-		zone.c
+		zone_init.c \
+		write_utils.c \
+		find_bloc.c \
+		free.c \
+		realloc.c \
 
 SRCS=$(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

@@ -6,45 +6,51 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 12:07:22 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/02 18:44:22 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/03 17:20:00 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-t_bloc	*search_for_zone(size_t bloc_size)
+static t_bloc	*split_bloc(t_bloc *bloc, size_t size)
 {
-	t_zone *zone;
-	t_bloc *bloc;
+	t_bloc		*new_bloc;
+	t_bloc		*right;
+	size_t		total_size;
 
-	bloc = NULL;
-	zone = (t_zone*)g_first_addr;
-	while (zone)
-	{
-		if (zone
-		&& zone->type == typeofzone_with_blocsize(bloc_size)
-		&& (bloc_size + zone->actual_size + SIZE_B) < zone->zone_size)
-			return (bloc = create_bloc(zone, bloc_size));
-		zone = zone->next;
-	}
+	right = bloc->next;
+	total_size = bloc->size + sizeof_bloc();
+	new_bloc = (t_bloc *)((char *)bloc + sizeof_bloc() + size);
+	new_bloc->size = total_size - size - sizeof_bloc() * 2;
+	new_bloc->status = FREE;
+	new_bloc->prev = bloc;
+	new_bloc->next = bloc->next;
+	bloc->size = size;
+	bloc->next = new_bloc;
+	if (right)
+		right->prev = new_bloc;
 	return (bloc);
+}
+
+static void		allocate_bloc(t_bloc *bloc, size_t size)
+{
+	if (g_zone.type != LARGE && bloc->size > size + sizeof_bloc())
+		split_bloc(bloc, size);
+	bloc->status = ALLOC;
 }
 
 void	*ft_malloc(size_t size)
 {
-	t_bloc *new_bloc;
-	t_zone *new_zone;
+	t_bloc	*alloc_b;
+	size_t	new_size;
 
-	new_bloc = NULL;
-	new_zone = NULL;
-	if (size <= 0)
+	if ((int)size < 0)
 		return (NULL);
-	if (typeofzone_with_blocsize(size) != LARGE)
-		new_bloc = search_for_zone(size);
-	if (!new_bloc)
-	{
-		new_zone = create_zone(size);
-		new_bloc = create_bloc(new_zone, size);
-	}
-	return (POINT_B(new_bloc));
+	new_size = get_aligned_size(size, 16);
+	zone_type_initialization(new_size);
+	alloc_b = exist_or_expand(g_zone.current, new_size);
+	if (!alloc_b)
+		return (NULL);
+	allocate_bloc(alloc_b, new_size);
+	return ((char *)alloc_b + sizeof_bloc());
 }

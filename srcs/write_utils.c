@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   write_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 11:22:06 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/03 17:20:00 by aaleksov         ###   ########.fr       */
+/*   Created: 2020/03/03 17:07:26 by aaleksov          #+#    #+#             */
+/*   Updated: 2020/03/03 17:07:52 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-size_t	get_aligned_size(size_t size, int align_size)
+void			ft_putchar(char c)
 {
-	if (size == 0)
-		return (align_size);
-	return ((size - 1) / align_size * align_size + align_size);
+	ft_putchar_fd(c, 1);
 }
 
-int		sizeof_bloc(void)
+void			ft_putchar_fd(char c, int fd)
 {
-	return (get_aligned_size(sizeof(t_bloc), 16));
+	write(fd, &c, 1);
 }
 
-int		page_size(void)
+void			ft_putstr(char const *s)
 {
-	return (getpagesize());
+	int i;
+
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i] != '\0')
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
 }

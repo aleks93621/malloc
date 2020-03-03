@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   zone_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 11:22:06 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/03 17:20:00 by aaleksov         ###   ########.fr       */
+/*   Created: 2020/03/03 16:37:56 by aaleksov          #+#    #+#             */
+/*   Updated: 2020/03/03 17:18:26 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-size_t	get_aligned_size(size_t size, int align_size)
+void		zone_type_initialization(size_t size)
 {
-	if (size == 0)
-		return (align_size);
-	return ((size - 1) / align_size * align_size + align_size);
-}
-
-int		sizeof_bloc(void)
-{
-	return (get_aligned_size(sizeof(t_bloc), 16));
-}
-
-int		page_size(void)
-{
-	return (getpagesize());
+	if (size <= TINY_SIZE)
+	{
+		g_zone.type = TINY;
+		g_zone.current = &g_zone.tiny;
+	}
+	else if (size <= SMALL_SIZE)
+	{
+		g_zone.type = SMALL;
+		g_zone.current = &g_zone.small;
+	}
+	else
+	{
+		g_zone.type = LARGE;
+		g_zone.current = &g_zone.large;
+	}
 }
