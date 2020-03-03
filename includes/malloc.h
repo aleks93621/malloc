@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/03 17:56:46 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/03 18:59:30 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,27 +66,24 @@ typedef struct		s_zone
 
 t_zone				g_zone;
 
-
 void				*ft_malloc(size_t size);
-void				ft_free(void *ptr);
-void				*ft_realloc(void *ptr, size_t size);
-void				show_alloc_mem();
-
-t_bloc				*find_bloc(void *ptr);
-void				free_on(t_bloc *bloc);
-
+t_bloc				*exist_or_expand(t_bloc **blocs, size_t size);
 void				zone_type_initialization(size_t size);
 
-t_bloc				*exist_or_expand(t_bloc **blocs, size_t size);
+void				ft_free(void *ptr);
+void				free_on(t_bloc *bloc);
 
-size_t				get_aligned_size(size_t size, int align_size);
+void				*ft_realloc(void *ptr, size_t size);
 
-int					sizeof_bloc(void);
-int					page_size(void);
+t_bloc				*find_bloc(void *ptr);
+
+void				show_alloc_mem(void);
 
 void				ft_putstr(char const *s);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putchar(char c);
-
+size_t				get_aligned_size(size_t size, int align_size);
+int					sizeof_bloc(void);
+int					page_size(void);
 
 #endif
