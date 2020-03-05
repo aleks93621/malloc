@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/05 12:20:34 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/05 14:38:57 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,12 @@ void				print_tiny();
 void				print_small();
 void				print_large();
 void				print_total(size_t total);
+
+void				show_alloc_mem_hex(void);
+void				print_tiny_hex();
+void				print_small_hex();
+void				print_large_hex();
+void				mem_dump_hex(void *bloc_addr, size_t size);
 
 void				ft_putstr(char const *s);
 void				ft_putchar_fd(char c, int fd);

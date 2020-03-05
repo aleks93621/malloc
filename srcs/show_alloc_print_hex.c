@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test6.c                                            :+:      :+:    :+:   */
+/*   show_alloc_print_hex.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 11:26:06 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/05 14:44:05 by aaleksov         ###   ########.fr       */
+/*   Created: 2020/03/05 11:32:18 by aaleksov          #+#    #+#             */
+/*   Updated: 2020/03/05 14:16:20 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-int	main(void)
+void	print_tiny_hex(void)
 {
-	malloc(125);
-	malloc(1024);
-	malloc(1024 * 32);
-	malloc(1024 * 1024);
-	malloc(1024 * 1024 * 16);
-	malloc(1024 * 1024 * 128);
-	show_alloc_mem();
-	return (0);
+	ft_putstr(CVER);
+	ft_putstr(CBOL);
+	ft_putendl("--- TINY -------");
+	ft_putstr(CNORM);
+}
+
+void	print_small_hex(void)
+{
+	ft_putstr(CVER);
+	ft_putstr(CBOL);
+	ft_putendl("--- SMALL ------");
+	ft_putstr(CNORM);
+}
+
+void	print_large_hex(void)
+{
+	ft_putstr(CVER);
+	ft_putstr(CBOL);
+	ft_putendl("--- LARGE ------");
+	ft_putstr(CNORM);
 }

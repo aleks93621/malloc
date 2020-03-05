@@ -6,7 +6,7 @@
 #    By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/17 11:45:43 by aaleksov          #+#    #+#              #
-#    Updated: 2020/03/05 12:38:54 by aaleksov         ###   ########.fr        #
+#    Updated: 2020/03/05 14:35:53 by aaleksov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,13 +27,16 @@ LIB = libft_malloc.so
 
 SRCS_PATH = ./srcs/
 
-SRCS_NAME = exist_or_expand.c \
-		calloc.c \
+SRCS_NAME = calloc.c \
+		exist_or_expand.c \
 		find_bloc.c \
 		free.c \
 		malloc.c \
+		mem_dump_hex.c \
 		realloc.c \
+		show_alloc_mem_hex.c \
 		show_alloc_mem.c \
+		show_alloc_print_hex.c \
 		show_alloc_print.c \
 		utils.c \
 		write_utils.c \

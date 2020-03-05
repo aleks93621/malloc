@@ -1,25 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test6.c                                            :+:      :+:    :+:   */
+/*   show_alloc_mem_hex.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 11:26:06 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/05 14:44:05 by aaleksov         ###   ########.fr       */
+/*   Created: 2020/03/05 14:10:59 by aaleksov          #+#    #+#             */
+/*   Updated: 2020/03/05 14:32:55 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-int	main(void)
+static void	print_zones_hex(t_bloc *blocs)
 {
-	malloc(125);
-	malloc(1024);
-	malloc(1024 * 32);
-	malloc(1024 * 1024);
-	malloc(1024 * 1024 * 16);
-	malloc(1024 * 1024 * 128);
-	show_alloc_mem();
-	return (0);
+	int i;
+
+	i = 0;
+	while (blocs)
+	{
+		if (blocs->status == ALLOC)
+		{
+			mem_dump_hex((char *)blocs + sizeof_bloc(), blocs->size);
+			i++;
+		}
+		blocs = blocs->next;
+	}
+	if (i == 0)
+	{
+		ft_putstr(CROU);
+		ft_putendl("There are no allocations in this type of zone");
+		ft_putstr(CNORM);
+	}
+}
+
+void		show_alloc_mem_hex(void)
+{
+    print_tiny_hex();
+    print_zones_hex(g_zone.tiny);
 }

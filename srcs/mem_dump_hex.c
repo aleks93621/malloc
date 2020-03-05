@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test6.c                                            :+:      :+:    :+:   */
+/*   mem_dump_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 11:26:06 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/05 14:44:05 by aaleksov         ###   ########.fr       */
+/*   Created: 2020/03/05 14:31:36 by aaleksov          #+#    #+#             */
+/*   Updated: 2020/03/05 14:47:14 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-int	main(void)
+void	mem_dump_print_line(void *line_addr, size_t size_rest)
 {
-	malloc(125);
-	malloc(1024);
-	malloc(1024 * 32);
-	malloc(1024 * 1024);
-	malloc(1024 * 1024 * 16);
-	malloc(1024 * 1024 * 128);
-	show_alloc_mem();
-	return (0);
+	ft_print_addr((unsigned long long)line_addr);
+	ft_putchar('\n');
+}
+
+void	mem_dump_hex(void *bloc_addr, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		mem_dump_print_line(bloc_addr + i, size - i);
+		i += 16;
+	}
 }
