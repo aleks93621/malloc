@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 17:33:06 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/03 17:57:50 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/05 13:03:50 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,14 @@ void		free_on(t_bloc *bloc)
 	}
 }
 
-void        ft_free(void *ptr)
+void		free(void *ptr)
 {
-    t_bloc		*b_to_free;
+	t_bloc	*b_to_free;
 
-    if (ptr == NULL)
+	if (ptr == NULL)
 		return ;
-    b_to_free = find_bloc(ptr);
-    free_on(b_to_free);
+	b_to_free = find_bloc(ptr);
+	if (!b_to_free)
+		return ;
+	free_on(b_to_free);
 }

@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debugs.c                                           :+:      :+:    :+:   */
+/*   calloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 07:52:30 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/05 12:11:50 by aaleksov         ###   ########.fr       */
+/*   Created: 2020/03/05 12:16:43 by aaleksov          #+#    #+#             */
+/*   Updated: 2020/03/05 12:19:49 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-int		test_align(void)
+static void	ft_bzero(void *s, size_t n)
 {
-	void	*data;
-	size_t	i;
+	unsigned char	*s2;
 
-	i = 1;
-	while (i < 5000)
+	s2 = (unsigned char *)s;
+	while (n--)
 	{
-		data = malloc(i);
-		if ((uintptr_t)data % 16 != 0)
-		{
-			dprintf(STDERR_FILENO, "malloc(%zu) return non aligné", i);
-			return (-1);
-		}
-		memset(data, 'a', i);
-		free(data);
-		i += 3;
+		*s2 = 0;
+		s2++;
 	}
-	return (0);
 }
 
-int		main(void)
+void		*calloc(size_t nmemb, size_t size)
 {
-	if (test_align() == -1)
-		return (-1);
-	return (0);
+	void	*alloc;
+
+	if ((int)nmemb < 0 || (int)size < 0)
+		return (NULL);
+	alloc = malloc(nmemb * size);
+	if (alloc)
+		ft_bzero(alloc, nmemb * size);
+	return (alloc);
 }

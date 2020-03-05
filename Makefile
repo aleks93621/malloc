@@ -6,7 +6,7 @@
 #    By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/17 11:45:43 by aaleksov          #+#    #+#              #
-#    Updated: 2020/03/03 18:14:32 by aaleksov         ###   ########.fr        #
+#    Updated: 2020/03/05 12:38:54 by aaleksov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,16 @@ LIB = libft_malloc.so
 SRCS_PATH = ./srcs/
 
 SRCS_NAME = exist_or_expand.c \
-		malloc.c \
-		utils.c \
-		zone_init.c \
-		write_utils.c \
+		calloc.c \
 		find_bloc.c \
 		free.c \
+		malloc.c \
 		realloc.c \
+		show_alloc_mem.c \
+		show_alloc_print.c \
+		utils.c \
+		write_utils.c \
+		zone_init.c \
 
 SRCS=$(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
@@ -59,12 +62,8 @@ $(NAME): $(OBJS)
 	@echo "$(CBOL)$(CV)[MALLOC]Création du lien symbolique:$(CNOR)\t$(CBOL)$(CMAG)$@ > $(LIB)$(CNOR)"
 
 crdir:
-ifeq ("$(wildcard $(OBJS_PATH))", "")
 	@mkdir -p $(OBJS_PATH)
 	@echo "$(CBOL)$(CV)[MALLOC]Création du dossier:$(CNOR)\t\t$(CBOL)$(OBJS_PATH)$(CNOR)"
-else
-	@echo "$(CBOL)$(CR)[MALLOC]Le dossier ./objects existe déjà$(CNOR)"
-endif
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@$(CC) $(FLAGS) -fPIC -o $@ -c $<

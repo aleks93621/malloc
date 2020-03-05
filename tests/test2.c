@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 07:48:45 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/02 17:52:31 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/05 12:11:50 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	main(void)
 	i = 0;
 	while (i < 1024)
 	{
-		addr = (char*)ft_malloc(1024);
+		addr = (char*)malloc(1024);
 		addr[0] = 42;
-		ft_free(addr);
+		free(addr);
 		i++;
 	}
 	return (0);

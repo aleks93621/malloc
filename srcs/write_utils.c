@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 17:07:26 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/03 17:07:52 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/05 12:03:40 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,19 @@ void			ft_putstr(char const *s)
 		ft_putchar(s[i]);
 		i++;
 	}
+}
+
+void			ft_putendl(char const *s)
+{
+	int i;
+
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i] != '\0')
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
+	ft_putchar('\n');
 }

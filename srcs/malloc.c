@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 12:07:22 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/03 17:20:00 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/05 12:46:40 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void		allocate_bloc(t_bloc *bloc, size_t size)
 	bloc->status = ALLOC;
 }
 
-void	*ft_malloc(size_t size)
+void			*malloc(size_t size)
 {
 	t_bloc	*alloc_b;
 	size_t	new_size;

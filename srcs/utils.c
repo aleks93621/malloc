@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 11:22:06 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/03 17:20:00 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/05 12:03:21 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,15 @@ int		sizeof_bloc(void)
 int		page_size(void)
 {
 	return (getpagesize());
+}
+
+void	ft_putsizet(size_t n)
+{
+	if (n / 10 == 0)
+		ft_putchar(n % 10 + '0');
+	else
+	{
+		ft_putsizet(n / 10);
+		ft_putchar(n % 10 + '0');
+	}
 }

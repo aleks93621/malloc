@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:08:15 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/03 18:14:08 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/05 12:46:46 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	*ft_memmove(void *dst, const void *src, size_t len)
 static void	*reallocation(t_bloc *bloc, size_t size)
 {
 	char		*new;
-	t_mtype     old_type;
+	t_mtype		old_type;
 
 	old_type = g_zone.type;
 	new = (char *)malloc(size);
@@ -47,7 +47,7 @@ static void	*reallocation(t_bloc *bloc, size_t size)
 	return (new);
 }
 
-void		*ft_realloc(void *ptr, size_t size)
+void		*realloc(void *ptr, size_t size)
 {
 	size_t		new_size;
 	t_bloc		*bloc;
