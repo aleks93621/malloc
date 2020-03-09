@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 11:38:31 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/05 14:38:57 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/09 13:46:22 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ typedef struct		s_zone
 	t_bloc			**current;
 }					t_zone;
 
-t_zone				g_zone;
+t_zone					g_zone;
+extern pthread_mutex_t	g_mutex;
 
 void				*calloc(size_t nmemb, size_t size);
 

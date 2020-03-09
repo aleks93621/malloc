@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:57:33 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/05 12:01:33 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/09 13:59:19 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void			show_alloc_mem(void)
 {
 	size_t	total;
 
+	pthread_mutex_lock(&g_mutex);
 	total = 0;
 	print_tiny();
 	display_zone(g_zone.tiny, &total);
@@ -78,4 +79,5 @@ void			show_alloc_mem(void)
 	print_large();
 	display_zone(g_zone.large, &total);
 	print_total(total);
+	pthread_mutex_unlock(&g_mutex);
 }

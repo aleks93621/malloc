@@ -6,11 +6,13 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 12:07:22 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/05 12:46:40 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/09 13:53:48 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
+
+pthread_mutex_t	g_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 static t_bloc	*split_bloc(t_bloc *bloc, size_t size)
 {
@@ -46,11 +48,13 @@ void			*malloc(size_t size)
 
 	if ((int)size < 0)
 		return (NULL);
+	pthread_mutex_lock(&g_mutex);
 	new_size = get_aligned_size(size, 16);
 	zone_type_initialization(new_size);
 	alloc_b = exist_or_expand(g_zone.current, new_size);
 	if (!alloc_b)
 		return (NULL);
 	allocate_bloc(alloc_b, new_size);
+	pthread_mutex_unlock(&g_mutex);
 	return ((char *)alloc_b + sizeof_bloc());
 }

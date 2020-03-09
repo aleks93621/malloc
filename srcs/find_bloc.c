@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 17:54:29 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/03 17:57:09 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/09 13:56:59 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_bloc			*find_bloc(void *ptr)
 {
 	t_bloc		*bloc;
 
+	pthread_mutex_lock(&g_mutex);
 	bloc = look_for_addr_on(g_zone.large, ptr);
 	if (bloc == NULL)
 	{
@@ -35,7 +36,10 @@ t_bloc			*find_bloc(void *ptr)
 		{
 			bloc = look_for_addr_on(g_zone.tiny, ptr);
 			if (bloc == NULL)
+			{
+				pthread_mutex_unlock(&g_mutex);
 				return (NULL);
+			}
 			g_zone.type = TINY;
 		}
 		else
@@ -43,5 +47,6 @@ t_bloc			*find_bloc(void *ptr)
 	}
 	else
 		g_zone.type = LARGE;
+	pthread_mutex_unlock(&g_mutex);
 	return (bloc);
 }

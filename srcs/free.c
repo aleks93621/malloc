@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 17:33:06 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/05 13:03:50 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/09 13:55:56 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void		free_on(t_bloc *bloc)
 	t_bloc	*left;
 	t_bloc	*right;
 
+	pthread_mutex_lock(&g_mutex);
 	bloc->status = FREE;
 	left = bloc->prev;
 	right = bloc->next;
@@ -54,6 +55,7 @@ void		free_on(t_bloc *bloc)
 		if (left && left->status == FREE)
 			merge_free_blocs(left, bloc);
 	}
+	pthread_mutex_unlock(&g_mutex);
 }
 
 void		free(void *ptr)

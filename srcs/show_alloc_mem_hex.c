@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 14:10:59 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/09 13:06:42 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/09 13:58:52 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ static void	print_zones_hex(t_bloc *blocs)
 
 void		show_alloc_mem_hex(void)
 {
+	pthread_mutex_lock(&g_mutex);
 	print_tiny_hex();
 	print_zones_hex(g_zone.tiny);
 	print_small_hex();
 	print_zones_hex(g_zone.small);
 	print_large_hex();
 	print_zones_hex(g_zone.large);
+	pthread_mutex_unlock(&g_mutex);
 }
