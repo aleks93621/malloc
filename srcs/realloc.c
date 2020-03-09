@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 18:08:15 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/09 13:58:23 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/09 14:32:26 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ static void	*reallocation(t_bloc *bloc, size_t size)
 	char		*new;
 	t_mtype		old_type;
 
+	pthread_mutex_lock(&g_mutex);
 	old_type = g_zone.type;
+	pthread_mutex_unlock(&g_mutex);
 	new = (char *)malloc(size);
 	pthread_mutex_lock(&g_mutex);
 	ft_memmove(new, (char *)bloc + sizeof_bloc(), bloc->size);
