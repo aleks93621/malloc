@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 14:10:59 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/05 14:32:55 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/09 13:06:42 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,21 @@ static void	print_zones_hex(t_bloc *blocs)
 	if (i == 0)
 	{
 		ft_putstr(CROU);
-		ft_putendl("There are no allocations in this type of zone");
+		ft_putendl("No allocations");
 		ft_putstr(CNORM);
 	}
+	ft_putstr(CVER);
+	ft_putstr(CBOL);
+	ft_putendl("--------------------------");
+	ft_putstr(CNORM);
 }
 
 void		show_alloc_mem_hex(void)
 {
-    print_tiny_hex();
-    print_zones_hex(g_zone.tiny);
+	print_tiny_hex();
+	print_zones_hex(g_zone.tiny);
+	print_small_hex();
+	print_zones_hex(g_zone.small);
+	print_large_hex();
+	print_zones_hex(g_zone.large);
 }
