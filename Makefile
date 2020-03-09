@@ -6,7 +6,7 @@
 #    By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/17 11:45:43 by aaleksov          #+#    #+#              #
-#    Updated: 2020/03/05 14:35:53 by aaleksov         ###   ########.fr        #
+#    Updated: 2020/03/09 15:51:38 by aaleksov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ clean:
 	@echo "$(CBOL)$(CR)[MALLOC]$(NOR)$(CBOL)Suppression des objets$(CNOR)";
 
 fclean: clean
-	@rm -rf $(NAME) $(LIB)
+	@rm -rf $(NAME) $(LIB) a.out
 	@echo "$(CBOL)$(CR)[MALLOC]$(NOR)$(CBOL)Suppression des fichiers supplémentaires$(CNOR)";
 
 re: fclean all
