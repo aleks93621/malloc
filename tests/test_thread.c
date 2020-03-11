@@ -6,7 +6,7 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 14:23:49 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/09 16:11:05 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/11 13:41:02 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,12 @@ int		main(void)
 	i = 0;
 	while (i < 42)
 	{
-		printf("%s%s%d%s\n", CVER, CBOL, i, CNORM);
+		printf("%s%s%d%s", CVER, CBOL, i, CNORM);
+		if (i < 41)
+			printf(" ");
 		pthread_join(thread_id[i], NULL);
 		i++;
 	}
+	printf("\n");
 	return (0);
 }

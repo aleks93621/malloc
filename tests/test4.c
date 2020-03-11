@@ -6,15 +6,13 @@
 /*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 10:55:26 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/09 11:33:42 by aaleksov         ###   ########.fr       */
+/*   Updated: 2020/03/11 13:26:14 by aaleksov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/malloc.h"
 
-/*
-**	#define M (1024 * 1024)
-*/
+#define M (1024 * 1024)
 
 void	print(char *s)
 {
