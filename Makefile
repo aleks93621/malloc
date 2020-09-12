@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+         #
+#    By: xxxxxxxx <xxxxxxxx@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/09/17 11:45:43 by aaleksov          #+#    #+#              #
-#    Updated: 2020/03/09 15:51:38 by aaleksov         ###   ########.fr        #
+#    Created: 2019/09/17 11:45:43 by xxxxxxxx          #+#    #+#              #
+#    Updated: 2020/03/09 15:51:38 by xxxxxxxx         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

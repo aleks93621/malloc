@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_show_alloc_mem_hex.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaleksov <aaleksov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xxxxxxxx <xxxxxxxx@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/20 11:26:06 by aaleksov          #+#    #+#             */
-/*   Updated: 2020/03/09 13:13:00 by aaleksov         ###   ########.fr       */
+/*   Created: 2019/11/20 11:26:06 by xxxxxxxx          #+#    #+#             */
+/*   Updated: 2020/03/09 13:13:00 by xxxxxxxx         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
